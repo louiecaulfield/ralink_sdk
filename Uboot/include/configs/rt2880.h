@@ -81,9 +81,9 @@
 
 #define CONFIG_BAUDRATE		57600
 
-#define CONFIG_SERVERIP 10.10.10.3
-#define CONFIG_IPADDR 10.10.10.123
-#define CONFIG_ETHADDR "00:AA:BB:CC:DD:10"
+#define CONFIG_SERVERIP 192.168.1.103
+#define CONFIG_IPADDR 192.168.1.1
+#define CONFIG_ETHADDR "00:0c:43:00:00:01"
 /* valid baudrates */
 #define CFG_BAUDRATE_TABLE	{ 9600, 19200, 38400, 57600, 115200 }
 
@@ -103,7 +103,7 @@
 	"flash_self=run ramargs addip addmisc;"				\
 		"bootm $(kernel_addr) $(ramdisk_addr)\0"		\
 	"kernel_addr=BFC40000\0"					\
-	"u-boot=u-boot.bin\0"				\
+	"u-boot=uboot.img\0"				\
 	"load=tftp 8A100000 $(u-boot)\0"				\
 	"u_b=protect off 1:0-1;era 1:0-1;"				\
 		"cp.b 8A100000 BC400000 $(filesize)\0"			\
@@ -133,7 +133,7 @@
 #elif defined (RT3883_FPGA_BOARD) || defined (RT3883_ASIC_BOARD) 
 #define	CFG_PROMPT		"RT3883 # "
 #elif defined (RT5350_FPGA_BOARD) || defined (RT5350_ASIC_BOARD) 
-#define	CFG_PROMPT		"RT5350 # "
+#define	CFG_PROMPT		"RT5350 SmartScope # "
 #elif defined (RT6855_FPGA_BOARD) || defined (RT6855_ASIC_BOARD) 
 #define	CFG_PROMPT		"RT6855 # "
 #elif defined (RT6855A_FPGA_BOARD) || defined (RT6855A_ASIC_BOARD) 
