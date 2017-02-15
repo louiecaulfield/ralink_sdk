@@ -81,7 +81,7 @@
 
 #define CONFIG_BAUDRATE		57600
 
-#define CONFIG_SERVERIP 192.168.1.103
+#define CONFIG_SERVERIP 192.168.1.11
 #define CONFIG_IPADDR 192.168.1.1
 #define CONFIG_ETHADDR "00:0c:43:00:00:01"
 /* valid baudrates */
@@ -202,37 +202,37 @@
 #define CFG_MAX_FLASH_SECT	(263)	/* max number of sectors on one chip */
 
 #if defined (RT2880_FPGA_BOARD) || defined (RT2880_ASIC_BOARD)
-#ifdef DUAL_IMAGE_SUPPORT
-#define PHYS_FLASH_START	0xBC000000 /* Address for issuing flash command */
-#if defined (ON_BOARD_2M_FLASH_COMPONENT)
-#define PHYS_FLASH_1		0xBC000000 /* Image1 Bank #1 */
-#define PHYS_FLASH2_1		0xBC100000 /* Image2 Bank #1 */
-#elif defined (ON_BOARD_4M_FLASH_COMPONENT)
-#define PHYS_FLASH_1		0xBC000000 /* Image1 Bank #1 */
-#define PHYS_FLASH2_1		0xBC200000 /* Image2 Bank #1 */
-#elif defined (ON_BOARD_8M_FLASH_COMPONENT)
-#define PHYS_FLASH_1		0xBC400000 /* Image1 Bank #1 */
-#define PHYS_FLASH_2		0xBC000000 /* Image1 Bank #2 */
-#define PHYS_FLASH2_1		0xBC000000 /* Image2 Bank #1 */
-#elif defined (ON_BOARD_16M_FLASH_COMPONENT)
-#define PHYS_FLASH_1		0xBCC00000 /* Image1 Bank #1 */
-#define PHYS_FLASH_2		0xBC000000 /* Image1 Bank #2 */
-#define PHYS_FLASH2_1		0xBC400000 /* Image2 Bank #1 */
-#define PHYS_FLASH2_2		0xBC800000 /* Image2 Bank #2 */
-#endif 
-#else //Non Dual Image
-#ifdef ON_BOARD_8M_FLASH_COMPONENT
-#define PHYS_FLASH_1		0xBC400000 /* Flash Bank #1 */
-#else
-#define PHYS_FLASH_1		0xBCC00000 /* Flash Bank #1 */
-#endif
-#define PHYS_FLASH_2		0xBC000000 /* Flash Bank #2 */
-#if defined (ON_BOARD_8M_FLASH_COMPONENT) || defined (ON_BOARD_16M_FLASH_COMPONENT)
-#define PHYS_FLASH_START	PHYS_FLASH_2 /* Address for issuing flash command */
-#else
-#define PHYS_FLASH_START	PHYS_FLASH_1 /* Address for issuing flash command */
-#endif
-#endif
+	#ifdef DUAL_IMAGE_SUPPORT
+		#define PHYS_FLASH_START	0xBC000000 /* Address for issuing flash command */
+		#if defined (ON_BOARD_2M_FLASH_COMPONENT)
+			#define PHYS_FLASH_1		0xBC000000 /* Image1 Bank #1 */
+			#define PHYS_FLASH2_1		0xBC100000 /* Image2 Bank #1 */
+		#elif defined (ON_BOARD_4M_FLASH_COMPONENT)
+			#define PHYS_FLASH_1		0xBC000000 /* Image1 Bank #1 */
+			#define PHYS_FLASH2_1		0xBC200000 /* Image2 Bank #1 */
+		#elif defined (ON_BOARD_8M_FLASH_COMPONENT)
+			#define PHYS_FLASH_1		0xBC400000 /* Image1 Bank #1 */
+			#define PHYS_FLASH_2		0xBC000000 /* Image1 Bank #2 */
+			#define PHYS_FLASH2_1		0xBC000000 /* Image2 Bank #1 */
+		#elif defined (ON_BOARD_16M_FLASH_COMPONENT)
+			#define PHYS_FLASH_1		0xBCC00000 /* Image1 Bank #1 */
+			#define PHYS_FLASH_2		0xBC000000 /* Image1 Bank #2 */
+			#define PHYS_FLASH2_1		0xBC400000 /* Image2 Bank #1 */
+			#define PHYS_FLASH2_2		0xBC800000 /* Image2 Bank #2 */
+		#endif 
+	#else //!DUAL_IMAGE_SUPPORT
+		#ifdef ON_BOARD_8M_FLASH_COMPONENT
+			#define PHYS_FLASH_1		0xBC400000 /* Flash Bank #1 */
+		#else //!ON_BOARD_8M_FLASH_COMPONENT
+			#define PHYS_FLASH_1		0xBCC00000 /* Flash Bank #1 */
+		#endif //ON_BOARD_8M_FLASH_COMPONENT
+		#define PHYS_FLASH_2		0xBC000000 /* Flash Bank #2 */
+		#if defined (ON_BOARD_8M_FLASH_COMPONENT) || defined (ON_BOARD_16M_FLASH_COMPONENT)
+			#define PHYS_FLASH_START	PHYS_FLASH_2 /* Address for issuing flash command */
+		#else
+			#define PHYS_FLASH_START	PHYS_FLASH_1 /* Address for issuing flash command */
+		#endif
+	#endif
 #elif defined (RT2883_FPGA_BOARD) || defined (RT2883_ASIC_BOARD) || \
       defined (RT3883_FPGA_BOARD) || defined (RT3883_ASIC_BOARD) || \
       defined (RT3352_FPGA_BOARD) || defined (RT3352_ASIC_BOARD) || \
@@ -240,50 +240,50 @@
       defined (RT6855_FPGA_BOARD) || defined (RT6855_ASIC_BOARD) || \
       defined (RT6352_FPGA_BOARD) || defined (RT6352_ASIC_BOARD) || \
       defined (RT71100_FPGA_BOARD) || defined (RT71100_ASIC_BOARD)
-#define PHYS_FLASH_START	0xBC000000 /* Flash Bank #2 */
-#define PHYS_FLASH_1		0xBC000000 /* Flash Bank #1 */
-  #ifdef DUAL_IMAGE_SUPPORT
-  #if defined (ON_BOARD_2M_FLASH_COMPONENT)
-  #define PHYS_FLASH2_1		0xBC100000 /* Flash Bank #2 */
-  #elif defined (ON_BOARD_4M_FLASH_COMPONENT)
-  #define PHYS_FLASH2_1		0xBC200000 /* Flash Bank #2 */
-  #elif defined (ON_BOARD_8M_FLASH_COMPONENT)
-  #define PHYS_FLASH2_1		0xBC400000 /* Flash Bank #2 */
-  #elif defined (ON_BOARD_16M_FLASH_COMPONENT)
-  #define PHYS_FLASH2_1		0xBC800000 /* Flash Bank #2 */
-  #elif defined (ON_BOARD_32M_FLASH_COMPONENT)
-  #define PHYS_FLASH2_1		0xBD000000 /* Flash Bank #2 */
-  #endif
-  #endif // DUAL_IMAGE_SUPPORT
+	#define PHYS_FLASH_START	0xBC000000 /* Flash Bank #2 */
+	#define PHYS_FLASH_1		0xBC000000 /* Flash Bank #1 */
+	#ifdef DUAL_IMAGE_SUPPORT
+	  #if defined (ON_BOARD_2M_FLASH_COMPONENT)
+	    #define PHYS_FLASH2_1		0xBC100000 /* Flash Bank #2 */
+	  #elif defined (ON_BOARD_4M_FLASH_COMPONENT)
+	    #define PHYS_FLASH2_1		0xBC200000 /* Flash Bank #2 */
+	  #elif defined (ON_BOARD_8M_FLASH_COMPONENT)
+	    #define PHYS_FLASH2_1		0xBC400000 /* Flash Bank #2 */
+	  #elif defined (ON_BOARD_16M_FLASH_COMPONENT)
+	    #define PHYS_FLASH2_1		0xBC800000 /* Flash Bank #2 */
+	  #elif defined (ON_BOARD_32M_FLASH_COMPONENT)
+	    #define PHYS_FLASH2_1		0xBD000000 /* Flash Bank #2 */
+	  #endif
+	#endif // DUAL_IMAGE_SUPPORT
 #elif defined (RT3052_FPGA_BOARD) || defined (RT3052_ASIC_BOARD)
   // RT3052_MP2 and 32M_FLASH
   #define PHYS_FLASH_START	0xBF000000 /* Address for issuing flash command */
   #define PHYS_FLASH_1		0xBF000000 /* Flash Bank #1 */
   #ifdef DUAL_IMAGE_SUPPORT
-  #if defined (ON_BOARD_2M_FLASH_COMPONENT)
-  #define PHYS_FLASH2_1		0xBF100000 /* Flash Bank #2 */
-  #elif defined (ON_BOARD_4M_FLASH_COMPONENT)
-  #define PHYS_FLASH2_1		0xBF200000 /* Flash Bank #2 */
-  #elif defined (ON_BOARD_8M_FLASH_COMPONENT)
-  #define PHYS_FLASH2_1		0xBF400000 /* Flash Bank #2 */
-  #elif defined (ON_BOARD_16M_FLASH_COMPONENT)
-  #define PHYS_FLASH2_1		0xBF800000 /* Flash Bank #2 */
-  #elif defined (ON_BOARD_32M_FLASH_COMPONENT)
-  #define PHYS_FLASH2_1		0xBB000000 /* Flash Bank #2 */
-  #undef CFG_MAX_FLASH_BANKS
-  #define CFG_MAX_FLASH_BANKS	2
-  #endif
+	  #if defined (ON_BOARD_2M_FLASH_COMPONENT)
+		  #define PHYS_FLASH2_1		0xBF100000 /* Flash Bank #2 */
+	  #elif defined (ON_BOARD_4M_FLASH_COMPONENT)
+		  #define PHYS_FLASH2_1		0xBF200000 /* Flash Bank #2 */
+	  #elif defined (ON_BOARD_8M_FLASH_COMPONENT)
+		  #define PHYS_FLASH2_1		0xBF400000 /* Flash Bank #2 */
+	  #elif defined (ON_BOARD_16M_FLASH_COMPONENT)
+		  #define PHYS_FLASH2_1		0xBF800000 /* Flash Bank #2 */
+	  #elif defined (ON_BOARD_32M_FLASH_COMPONENT)
+		  #define PHYS_FLASH2_1		0xBB000000 /* Flash Bank #2 */
+		  #undef CFG_MAX_FLASH_BANKS
+		  #define CFG_MAX_FLASH_BANKS	2
+	  #endif
   //#define PHYS_FLASH_2		0xBF000000 /* Flash Bank #2 */
   #else // Non Dual Image
-  #ifdef ON_BOARD_32M_FLASH_COMPONENT
-  #define PHYS_FLASH2_START	0xBB000000 /* Flash Bank #2 */
-  #define PHYS_FLASH_2		0xBB000000 /* Flash Bank #2 */
-  #undef CFG_MAX_FLASH_BANKS
-  #define CFG_MAX_FLASH_BANKS	2
-  #endif
+	  #ifdef ON_BOARD_32M_FLASH_COMPONENT
+		  #define PHYS_FLASH2_START	0xBB000000 /* Flash Bank #2 */
+		  #define PHYS_FLASH_2		0xBB000000 /* Flash Bank #2 */
+		  #undef CFG_MAX_FLASH_BANKS
+		  #define CFG_MAX_FLASH_BANKS	2
+	  #endif
  #endif
 #elif defined (RT6855A_FPGA_BOARD) || defined (RT6855A_ASIC_BOARD)
-#define PHYS_FLASH_1		0xB0000000
+	#define PHYS_FLASH_1		0xB0000000
 #endif // defined (RT2880_FPGA_BOARD) || defined (RT2880_ASIC_BOARD)
 
 /* The following #defines are needed to get flash environment right */
