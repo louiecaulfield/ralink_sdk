@@ -24,7 +24,6 @@
 #include <common.h>
 #include <rt_mmap.h>
 
-#undef DEBUG
 flash_info_t	flash_info[CFG_MAX_FLASH_BANKS]; /* info for FLASH chips	*/
 
 extern ulong rt2880_flash_start_t;

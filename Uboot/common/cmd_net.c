@@ -27,7 +27,7 @@
 #include <common.h>
 #include <command.h>
 #include <net.h>
-#undef DEBUG
+//#undef DEBUG
 #if (CONFIG_COMMANDS & CFG_CMD_NET)
 
 

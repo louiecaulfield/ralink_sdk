@@ -1275,7 +1275,7 @@ int do_mem_cp(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 
 	addr = CFG_LOAD_ADDR;
 	count = (unsigned int)NetBootFileXferSize;
-
+	printf("CFG_LOAD_ADDR [0x%08X]\n", CFG_LOAD_ADDR);
 	if (!strncmp(argv[0], "cp.linux", 9)) {
 		dest = CFG_KERN_ADDR - CFG_FLASH_BASE;
 		printf("\n Copy linux image[%d byte] to SPI Flash[0x%08X].... \n", count, dest);
@@ -1346,7 +1346,7 @@ U_BOOT_CMD(
 	"erase linux\n    - erase linux kernel block\n"
 );
 
-//#define SPI_FLASH_DBG_CMD 
+#define SPI_FLASH_DBG_CMD 
 #ifdef SPI_FLASH_DBG_CMD
 int ralink_spi_command(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 {

@@ -34,7 +34,6 @@
 #include <nand_api.h>
 
 DECLARE_GLOBAL_DATA_PTR;
-#undef DEBUG
 
 #define SDRAM_CFG1_REG RALINK_SYSCTL_BASE + 0x0304
 
