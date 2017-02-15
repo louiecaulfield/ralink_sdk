@@ -24,7 +24,7 @@
 
 # Set with ON/OFF
 
-UN_NECESSITY_U_BOOT_CMD_OPEN = OFF
+UN_NECESSITY_U_BOOT_CMD_OPEN = ON
 
 ######## RT2880 test function option configuration ##########################
 
